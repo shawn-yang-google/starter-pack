@@ -42,7 +42,7 @@ agent-engine/
 2.  **Modify the Agent (app/app.py):**
 
     *   Replace the `get_exchange_rate` function with your custom tool.
-    *   Update the `agent` definition with your desired model, tools, and other Langchain agent parameters.
+    *   Update the `create_agent` with your desired model, tools, and other Langchain agent parameters.
 
 3.  **Install Dependencies:**
 
