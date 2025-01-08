@@ -8,7 +8,7 @@ def main(requirements, extra_packages):
     """Deploys the agent to Vertex AI."""
 
     agent = app.create_agent()
-    # Check if the agent is serializable (add this to utils.py later)
+    # Check if the agent is serializable
     try:
         utils.check_serializable(agent)
         print("Agent is serializable.")
@@ -16,7 +16,13 @@ def main(requirements, extra_packages):
         print(f"Agent serialization check failed: {e}")
         return
 
-    # You might want to add pip freeze here if needed
+    missing_packages = get_missing_packages(requirements)
+    if missing_packages:
+        print("The following packages are installed but not listed in requirements:")
+        for pkg in missing_packages:
+            print(pkg)
+    else:
+        print("All installed packages are listed in requirements")
 
     reasoning_engines.ReasoningEngine.create(
         agent,
