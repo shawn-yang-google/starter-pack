@@ -34,7 +34,7 @@ def generate_requirements_file(requirements, filename="requirements.txt"):
             f.write(req + "\n")
 
 
-def get_missing_requirements(required_packages):
+def get_missing_packages(required_packages):
     """
     Compares the provided list of required packages with the installed packages
     and returns a list of packages that are installed but not in the required list.
