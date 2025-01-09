@@ -5,7 +5,7 @@ This repository provides a starter pack for deploying custom reasoning engines t
 ## Structure
 
 ```
-agent-engine/
+starter-pack/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yaml         # GitHub Actions workflow for deployment
