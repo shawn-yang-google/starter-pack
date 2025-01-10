@@ -1,9 +1,11 @@
 import vertexai
 from vertexai.preview import reasoning_engines
+import os
 
-PROJECT_ID = "reasoning-engine-test-1"  # @param {type:"string"}
-LOCATION = "us-central1"  # @param {type:"string"}
-STAGING_BUCKET = "gs://reasoning-engine-test-1-bucket"  # @param {type:"string"}
+# Retrieve environment variables
+PROJECT_ID = os.environ.get("PROJECT_ID")
+LOCATION = os.environ.get("LOCATION")
+STAGING_BUCKET = os.environ.get("STAGING_BUCKET")
 
 vertexai.init(
     project=PROJECT_ID,
