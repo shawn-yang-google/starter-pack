@@ -58,14 +58,13 @@ def get_args_or_rasie():
     parser.add_argument(
         "--requirements",
         type=str,
-        default="requirements.txt",
+        default="deploy/requirements.txt",
         help="Comma-separated list of requirements, or path to requirements.txt.",
     )
     parser.add_argument(
         "--extra_packages",
         type=str,
         help="Comma-separated list of extra packages to include, or a directory.",
-        required=True,
     )
     parser.add_argument(
         "--project_id",
