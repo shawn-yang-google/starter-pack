@@ -53,22 +53,25 @@ def get_missing_packages(required_packages):
     
     return missing_packages
 
-def get_args():
+def get_args_or_rasie():
     parser = argparse.ArgumentParser(description="Deploy a Reasoning Engine agent.")
     parser.add_argument(
         "--requirements",
         type=str,
+        default="requirements.txt",
         help="Comma-separated list of requirements, or path to requirements.txt.",
     )
     parser.add_argument(
         "--extra_packages",
         type=str,
         help="Comma-separated list of extra packages to include, or a directory.",
+        required=True,
     )
     parser.add_argument(
         "--project_id",
         type=str,
         help="The default project to use when making API calls.",
+        required=True,
     )
     parser.add_argument(
         "--location",
@@ -80,6 +83,7 @@ def get_args():
         "--staging_bucket",
         type=str,
         help="The default staging bucket to use to stage artifacts when making API calls. In the form gs://...",
+        required=True,
     )
     return parser.parse_args()
     
@@ -87,7 +91,15 @@ def get_args():
 def main():
     """Deploys the agent to Vertex AI."""
 
-    args = get_args()
+    args = get_args_or_raise()
+
+    # Authentication.
+    vertexai.init(
+        project=args.project_id,
+        location=args.location,
+        staging_bucket=args.staging_bucket,
+    )
+    
     # Handle requirements
     if os.path.isfile(args.requirements):
         with open(args.requirements, 'r') as f:
@@ -105,29 +117,21 @@ def main():
     else:
         extra_packages = [pkg.strip() for pkg in args.extra_packages.split(",")]
 
-    # Authentication.
-    vertexai.init(
-        project=args.project_id,
-        location=args.location,
-        staging_bucket=args.staging_bucket,
-    )
-
     agent = app.create_agent()
     # Check if the agent is serializable
     try:
         check_serializable(agent)
-        print("Agent is serializable.")
+        logging.info("Agent is serializable.")
     except Exception as e:
-        print(f"Agent serialization check failed: {e}")
+        logging.error(f"Agent serialization check failed: {e}")
         return
 
+    # Warning the missing packages.
     missing_packages = get_missing_packages(requirements)
     if missing_packages:
-        print("The following packages are installed but not listed in requirements:")
-        for pkg in missing_packages:
-            print(pkg)
+        logging.error(f"The following packages are installed but not listed in requirements: {missing_packages}")
     else:
-        print("All installed packages are listed in requirements")
+        logging.info("All installed packages are listed in requirements")
 
     reasoning_engines.ReasoningEngine.create(
         agent,
