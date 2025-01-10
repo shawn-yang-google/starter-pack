@@ -2,17 +2,6 @@ import vertexai
 from vertexai.preview import reasoning_engines
 import os
 
-# Retrieve environment variables
-PROJECT_ID = os.environ.get("PROJECT_ID")
-LOCATION = os.environ.get("LOCATION")
-STAGING_BUCKET = os.environ.get("STAGING_BUCKET")
-
-vertexai.init(
-    project=PROJECT_ID,
-    location=LOCATION,
-    staging_bucket=STAGING_BUCKET,
-)
-
 def get_exchange_rate(
     currency_from: str = "USD",
     currency_to: str = "EUR",
