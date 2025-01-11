@@ -64,7 +64,7 @@ def get_args_or_rasie():
     parser.add_argument(
         "--extra_packages",
         type=str,
-        help="Comma-separated list of extra packages to include, or a directory.",
+        help="Comma-separated list of extra packages to include, or path to extra_packages.txt.",
     )
     parser.add_argument(
         "--project_id",
