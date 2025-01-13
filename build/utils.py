@@ -64,6 +64,7 @@ def get_args_or_rasie():
     parser.add_argument(
         "--extra_packages",
         type=str,
+        default="deploy/extra_packages.txt",
         help="Comma-separated list of extra packages to include, or path to extra_packages.txt.",
     )
     parser.add_argument(
