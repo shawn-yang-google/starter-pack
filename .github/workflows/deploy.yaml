@@ -35,8 +35,7 @@ jobs:
 
     - name: Deploy to Vertex AI
       run: |
-        python build/deploy.py --requirements=requirements.txt --extra_packages=app
-      env:
-        PROJECT_ID: ${{ secrets.PROJECT_ID }} # Use GitHub secrets for sensitive info
-        LOCATION: ${{ secrets.LOCATION }}
-        STAGING_BUCKET: ${{ secrets.STAGING_BUCKET }}
+        python build/utils.py \
+          --project_id=reasoning-engine-test-1 \
+          --location=us-central1 \
+          --staging_bucket=gs://reasoning-engine-test-1-bucket
