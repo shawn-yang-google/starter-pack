@@ -5,7 +5,6 @@ import os
 import pkg_resources
 
 from app import app
-from build import utils
 from vertexai.preview import reasoning_engines
 
 def is_serializable_or_raise(obj):
