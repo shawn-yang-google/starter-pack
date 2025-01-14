@@ -30,12 +30,12 @@ jobs:
     - name: Authenticate to Google Cloud
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider' # Replace with your workload identity provider
-        service_account: 'my-service-account@my-project.iam.gserviceaccount.com' # Replace with your service account
+        workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ env.SERVICE_ACCOUNT }}
 
     - name: Deploy to Vertex AI
       run: |
         python build/utils.py \
-          --project_id=reasoning-engine-test-1 \
-          --location=us-central1 \
-          --staging_bucket=gs://reasoning-engine-test-1-bucket
+          --project_id=${{ env.PROJECT_ID }} \
+          --location=${{ env.LOCATION }}\
+          --staging_bucket=${{ env.STAGING_BUCKET }}
