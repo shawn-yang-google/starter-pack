@@ -59,7 +59,7 @@ def get_missing_packages(required_packages):
     
     return missing_packages
 
-def get_args_or_rasie():
+def get_args():
     parser = argparse.ArgumentParser(description="Deploy a Reasoning Engine agent.")
     parser.add_argument(
         "--requirements",
@@ -97,7 +97,7 @@ def get_args_or_rasie():
 def main():
     """Deploys the agent to Vertex AI."""
 
-    args = get_args_or_raise()
+    args = get_args()
 
     # Authentication.
     vertexai.init(
