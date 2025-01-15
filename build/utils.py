@@ -5,7 +5,7 @@ import os
 import pkg_resources
 import tempfile
 
-from app import app
+from app.app import app  # Import the 'app' object from the 'app' module within the 'app' package
 from vertexai.preview import reasoning_engines
 
 def serializable_or_raise(obj):

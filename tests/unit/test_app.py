@@ -1,5 +1,4 @@
 import unittest
-from app import app
 
 # Add test cases as needed...
 
