@@ -7,6 +7,7 @@ import tempfile
 
 from app.app import create_agent
 from vertexai.preview import reasoning_engines
+import vertexai
 
 def serializable_or_raise(obj):
     """Checks if an object is serializable using cloudpickle.
