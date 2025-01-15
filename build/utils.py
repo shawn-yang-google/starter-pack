@@ -5,7 +5,7 @@ import os
 import pkg_resources
 import tempfile
 
-from app.app import app  # Import the 'app' object from the 'app' module within the 'app' package
+from app.app import create_agent
 from vertexai.preview import reasoning_engines
 
 def serializable_or_raise(obj):
@@ -123,7 +123,7 @@ def main():
     else:
         extra_packages = [pkg.strip() for pkg in args.extra_packages.split(",")]
 
-    agent = app.create_agent()
+    agent = create_agent()
     # Check if the agent is serializable
     serializable_or_raise(agent)
 
