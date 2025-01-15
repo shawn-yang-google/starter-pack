@@ -65,13 +65,13 @@ def get_args():
     parser.add_argument(
         "--requirements",
         type=str,
-        default="deploy/requirements.txt",
+        default="dependencies/requirements.txt",
         help="Comma-separated list of requirements, or path to requirements.txt.",
     )
     parser.add_argument(
         "--extra_packages",
         type=str,
-        default="deploy/extra_packages.txt",
+        default="dependencies/extra_packages.txt",
         help="Comma-separated list of extra packages to include, or path to extra_packages.txt.",
     )
     parser.add_argument(
