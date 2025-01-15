@@ -1,13 +1,14 @@
 import argparse
 import cloudpickle
-import tempfile
+import logging
 import os
 import pkg_resources
+import tempfile
 
 from app import app
 from vertexai.preview import reasoning_engines
 
-def is_serializable_or_raise(obj):
+def serializable_or_raise(obj):
     """Checks if an object is serializable using cloudpickle.
 
     Args:
@@ -16,14 +17,20 @@ def is_serializable_or_raise(obj):
     Raises:
         Exception: If the object is not serializable.
     """
-    try:
-        with tempfile.TemporaryDirectory() as temp_dir:
-            temp_file = os.path.join(temp_dir, "temp_pickle.pkl")
-            with open(temp_file, "wb") as f:
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_file = os.path.join(temp_dir, "temp_pickle.pkl")
+        with open(temp_file, "wb") as f:
+            try:
                 cloudpickle.dump(obj, f)
+            except Exception as e:
+                raise Exception(f"Object cannot be dumped: {e}")
 
-    except Exception as e:
-        raise Exception(f"Object is not serializable: {e}")
+        with open(temp_file, "rb") as f:
+            try:
+                obj = cloudpickle.load(f)
+            except Exception as e:
+                raise Exception(f"Object cannot be loaded: {e}")
+
 
 def get_missing_packages(required_packages):
     """
@@ -118,12 +125,7 @@ def main():
 
     agent = app.create_agent()
     # Check if the agent is serializable
-    try:
-        check_serializable(agent)
-        logging.info("Agent is serializable.")
-    except Exception as e:
-        logging.error(f"Agent serialization check failed: {e}")
-        return
+    serializable_or_raise(agent)
 
     # Warning the missing packages.
     missing_packages = get_missing_packages(requirements)
