@@ -27,11 +27,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r dependencies/requirements.txt
 
-    - name: Authenticate to Google Cloud
-      uses: 'google-github-actions/auth@v1'
+    - uses: 'google-github-actions/auth@v2'
       with:
-        workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-        service_account: ${{ secrets.SERVICE_ACCOUNT }}
+        project_id: 'sean-reasoning-engine'
+        workload_identity_provider: 'projects/266724850948/locations/global/workloadIdentityPools/github/providers/starter-pack'
 
     - name: Deploy to Vertex AI
       run: |
