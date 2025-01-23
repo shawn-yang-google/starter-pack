@@ -37,4 +37,4 @@ jobs:
         python utils.py \
           --project_id=sean-reasoning-engine \
           --location=us-central1 \
-          --staging_bucket=sean-reasoning-engine-1-bucket
+          --staging_bucket=gs://sean-reasoning-engine-1-bucket
