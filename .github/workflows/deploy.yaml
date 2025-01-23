@@ -35,6 +35,6 @@ jobs:
     - name: Deploy to Vertex AI
       run: |
         python utils.py \
-          --project_id=${{ env.PROJECT_ID }} \
-          --location=${{ env.LOCATION }} \
-          --staging_bucket=${{ env.STAGING_BUCKET }}
+          --project_id=sean-reasoning-engine \
+          --location=us-central1 \
+          --staging_bucket=sean-reasoning-engine-1-bucket
