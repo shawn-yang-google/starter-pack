@@ -36,5 +36,5 @@ jobs:
       run: |
         python utils.py \
           --project_id=${{ env.PROJECT_ID }} \
-          --location=${{ env.LOCATION }}\
+          --location=${{ env.LOCATION }} \
           --staging_bucket=${{ env.STAGING_BUCKET }}
