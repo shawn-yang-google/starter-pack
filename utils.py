@@ -101,6 +101,7 @@ def main():
     args = get_args()
 
     # Authentication.
+    logging.info(f"project_id: {args.project_id}; location: {args.location}; staging_bucket: {args.staging_bucket}")
     vertexai.init(
         project=args.project_id,
         location=args.location,
