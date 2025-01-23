@@ -101,7 +101,7 @@ def main():
     args = get_args()
 
     # Authentication.
-    logging.info(f"project_id: {args.project_id}; location: {args.location}; staging_bucket: {args.staging_bucket}")
+    logging.warning(f"project_id: {args.project_id}; location: {args.location}; staging_bucket: {args.staging_bucket}")
     vertexai.init(
         project=args.project_id,
         location=args.location,
@@ -132,7 +132,7 @@ def main():
     # Warning the missing packages.
     missing_packages = get_missing_packages(requirements)
     if missing_packages:
-        logging.error(f"The following packages are installed but not listed in requirements: {missing_packages}")
+        logging.warning(f"The following packages are installed but not listed in requirements: {missing_packages}")
     else:
         logging.info("All installed packages are listed in requirements")
 
