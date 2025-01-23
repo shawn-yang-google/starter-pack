@@ -34,7 +34,7 @@ jobs:
 
     - name: Deploy to Vertex AI
       run: |
-        python build/utils.py \
+        python utils.py \
           --project_id=${{ env.PROJECT_ID }} \
           --location=${{ env.LOCATION }}\
           --staging_bucket=${{ env.STAGING_BUCKET }}
