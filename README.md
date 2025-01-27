@@ -28,4 +28,6 @@ starter-pack/
 2.  **Vertex AI API:** Enable the Vertex AI API in your project.
 3.  **Cloud Storage Bucket:** Create a Cloud Storage bucket to be used as the staging bucket for Vertex AI.
 
+Test the ci/cd.
+
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
