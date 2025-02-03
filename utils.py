@@ -2,7 +2,6 @@ import argparse
 import cloudpickle
 import logging
 import os
-import pkg_resources
 import tempfile
 
 from app.app import create_agent
@@ -46,6 +45,14 @@ def get_missing_packages(required_packages):
         in the format "package==version".
     """
     installed_packages = []
+    try:
+        import pkg_resources
+    except ImportError:
+        # Handle the case where pkg_resources is not available
+        # Likely due to the deprecation (i.e., https://github.com/mu-editor/mu/issues/2485).
+        logging.info("pkg_resources not found.  Functionality relying on it will be disabled.")
+        return installed_packages
+    
     for dist in pkg_resources.working_set:
         installed_packages.append(f"{dist.project_name}=={dist.version}")
         
