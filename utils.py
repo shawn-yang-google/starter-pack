@@ -113,6 +113,7 @@ def main():
         project=args.project_id,
         location=args.location,
         staging_bucket=args.staging_bucket,
+        api_endpoint='us-central1-autopush-aiplatform.sandbox.googleapis.com',
     )
     
     # Handle requirements
