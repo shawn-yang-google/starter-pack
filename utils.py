@@ -140,6 +140,7 @@ def main():
         agent,
         requirements=requirements,
         extra_packages=extra_packages,
+        sys_version="3.12",
     )
 
 if __name__ == "__main__":
