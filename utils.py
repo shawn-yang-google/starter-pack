@@ -148,8 +148,21 @@ def main():
         agent,
         requirements=requirements,
         extra_packages=extra_packages,
-        sys_version="3.12",
     )
+    logging.info("Reasoning Engine successfully deployed to autopush.")
+
+    vertexai.init(
+        project=args.project_id,
+        location=args.location,
+        staging_bucket=args.staging_bucket,
+        api_endpoint='us-central1-aiplatform.googleapis.com',
+    )
+    reasoning_engines.ReasoningEngine.create(
+        agent,
+        requirements=requirements,
+        extra_packages=extra_packages,
+    )
+    logging.info("Reasoning Engine successfully deployed to prod.")
 
 if __name__ == "__main__":
     main()

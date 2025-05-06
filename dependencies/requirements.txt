@@ -1,1 +1,1 @@
-google-cloud-aiplatform[langchain,reasoningengine] @ git+https://github.com/googleapis/python-aiplatform.git@copybara_713408013
+google-cloud-aiplatform[langchain,reasoningengine] @ git+https://github.com/googleapis/python-aiplatform.git@copybara_755490399
