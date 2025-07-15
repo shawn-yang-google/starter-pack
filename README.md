@@ -1,4 +1,4 @@
-# Reasoning Engine Starter Pack
+# Reasoning Engine Starter Pack via Github Action
 
 This repository provides a starter pack for deploying custom reasoning engines to Vertex AI using source code or a GitHub repository. It includes a basic agent that retrieves exchange rates using the Frankfurter API as an example.
 
